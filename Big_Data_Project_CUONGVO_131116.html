@@ -7482,6 +7482,9 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1>RETAIL DATASET ANALYSIS <br/></h1>
+<p><b>Author: CUONG VO <br/>
+Student ID: 131116 </b></p>
 </div>
 </div>
 </div>
@@ -7492,10 +7495,26 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p> BIG DATA FINAL PROJECT <br/>
-FINANCIAL TRANSACTION FRAUD DETECTION <br/>
-Author: CUONG VO <br/>
-Student ID: 131116 </p>
+<p>Technical Information:
+<b></b></p>
+<ul>
+<li>OS: WSL2 Ubuntu 22.04LTS</li>
+<li>Spark: 3.5.0</li>
+<li>Scala: 2.12.18</li>
+<li>Java OpenJDK: 11.0.21
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Library-Import">Library Import<a class="anchor-link" href="#Library-Import">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7507,7 +7526,208 @@ Student ID: 131116 </p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Create-Spark-Session">Create Spark Session<a class="anchor-link" href="#Create-Spark-Session">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s1">'Retail Analysis'</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sparkContext</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>your 131072x1 screen size is bogus. expect trouble
+24/02/03 12:40:31 WARN Utils: Your hostname, CuongAtPoland resolves to a loopback address: 127.0.1.1; using 172.27.34.142 instead (on interface eth0)
+24/02/03 12:40:31 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+24/02/03 12:40:33 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Dataset-import">Dataset import<a class="anchor-link" href="#Dataset-import">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><b>Source:</b> <a href="https://archive.ics.uci.edu/dataset/502/online+retail+ii">https://archive.ics.uci.edu/dataset/502/online+retail+ii</a></p>
+<p><b>Abstract:</b> This dataset captures essential details from online retail transactions, encompassing diverse aspects of the purchase process. This comprehensive dataset allows for the analysis of purchasing patterns, sales trends, and customer behavior across different countries. It provides a valuable resource for exploring various aspects of online retail operations, from product popularity to geographical sales distribution. The inclusion of detailed transaction information enables researchers and analysts to delve into the dynamics of the online retail business and derive insights that can inform strategic decisions.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">retail_schema</span> <span class="o">=</span> <span class="n">StructType</span><span class="p">([</span>
+  <span class="n">StructField</span><span class="p">(</span><span class="s1">'Invoice'</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">()),</span>
+  <span class="n">StructField</span><span class="p">(</span><span class="s1">'StockCode'</span><span class="p">,</span> <span class="n">StringType</span><span class="p">()),</span>
+  <span class="n">StructField</span><span class="p">(</span><span class="s1">'Description'</span><span class="p">,</span> <span class="n">StringType</span><span class="p">()),</span>
+  <span class="n">StructField</span><span class="p">(</span><span class="s1">'Quantity'</span><span class="p">,</span> <span class="n">StringType</span><span class="p">()),</span>
+  <span class="n">StructField</span><span class="p">(</span><span class="s1">'InvoiceDate'</span><span class="p">,</span> <span class="n">StringType</span><span class="p">()),</span>
+  <span class="n">StructField</span><span class="p">(</span><span class="s1">'Price'</span><span class="p">,</span> <span class="n">FloatType</span><span class="p">()),</span>
+  <span class="n">StructField</span><span class="p">(</span><span class="s1">'Customer ID'</span><span class="p">,</span> <span class="n">StringType</span><span class="p">()),</span>
+  <span class="n">StructField</span><span class="p">(</span><span class="s1">'Country'</span><span class="p">,</span> <span class="n">StringType</span><span class="p">())</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">file_location</span> <span class="o">=</span> <span class="s2">"./online_retail.csv"</span>
+<span class="n">file_type</span> <span class="o">=</span> <span class="s2">"csv"</span>
+
+<span class="n">infer_schema</span> <span class="o">=</span> <span class="s2">"true"</span>
+<span class="n">first_row_is_header</span> <span class="o">=</span> <span class="s2">"true"</span>
+<span class="n">delimiter</span> <span class="o">=</span> <span class="s2">","</span>
+
+<span class="c1"># The applied options are for CSV files. For other file types, these will be ignored.</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_type</span><span class="p">)</span> \
+  <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">"inferSchema"</span><span class="p">,</span> <span class="n">infer_schema</span><span class="p">)</span> \
+  <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">"header"</span><span class="p">,</span> <span class="n">first_row_is_header</span><span class="p">)</span> \
+  <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">"sep"</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">)</span> \
+  <span class="o">.</span><span class="n">schema</span><span class="p">(</span><span class="n">retail_schema</span><span class="p">)</span> \
+  <span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_location</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>+-------+---------+--------------------+--------+-------------+-----+-----------+--------------+
+|Invoice|StockCode|         Description|Quantity|  InvoiceDate|Price|Customer ID|       Country|
++-------+---------+--------------------+--------+-------------+-----+-----------+--------------+
+| 489434|    85048|15CM CHRISTMAS GL...|      12|01-12-09 7:45| 6.95|    13085.0|United Kingdom|
+| 489434|   79323P|  PINK CHERRY LIGHTS|      12|01-12-09 7:45| 6.75|    13085.0|United Kingdom|
+| 489434|   79323W| WHITE CHERRY LIGHTS|      12|01-12-09 7:45| 6.75|    13085.0|United Kingdom|
+| 489434|    22041|"RECORD FRAME 7""...|      48|01-12-09 7:45|  2.1|    13085.0|United Kingdom|
+| 489434|    21232|STRAWBERRY CERAMI...|      24|01-12-09 7:45| 1.25|    13085.0|United Kingdom|
+| 489434|    22064|PINK DOUGHNUT TRI...|      24|01-12-09 7:45| 1.65|    13085.0|United Kingdom|
+| 489434|    21871| SAVE THE PLANET MUG|      24|01-12-09 7:45| 1.25|    13085.0|United Kingdom|
+| 489434|    21523|FANCY FONT HOME S...|      10|01-12-09 7:45| 5.95|    13085.0|United Kingdom|
+| 489435|    22350|           CAT BOWL |      12|01-12-09 7:46| 2.55|    13085.0|United Kingdom|
+| 489435|    22349|DOG BOWL , CHASIN...|      12|01-12-09 7:46| 3.75|    13085.0|United Kingdom|
++-------+---------+--------------------+--------+-------------+-----+-----------+--------------+
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Descriptive-Analysis">Descriptive Analysis<a class="anchor-link" href="#Descriptive-Analysis">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Insight">Insight<a class="anchor-link" href="#Insight">¶</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 </div>
 </div>
